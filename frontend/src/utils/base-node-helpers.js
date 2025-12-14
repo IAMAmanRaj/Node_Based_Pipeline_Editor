@@ -92,29 +92,27 @@ export const renderField = (field, value, onChange) => {
   );
 };
 
-export const getNextIndexedName = (NEW_PREFIX) => {
+export const getNextIndexedName = (prefix) => {
   const nodes = useStore.getState().nodes;
 
-  const usedIndexes = nodes
-    .map((node) => {
-      const values = Object.values(node.data || {});
-      const matched = values.find(
-        (value) =>
-          typeof value === "string" && value.startsWith(NEW_PREFIX)
-      );
-
-      if (!matched) return null;
-
-      const index = Number(matched.replace(NEW_PREFIX, ""));
-      return Number.isNaN(index) ? null : index;
-    })
-    .filter((index) => index !== null);
+  const usedIndexes = new Set();
+  nodes.forEach((node) => {
+    const dataValues = Object.values(node.data || {});
+    for (const value of dataValues) {
+      if (typeof value === "string" && value.startsWith(prefix)) {
+        const index = Number(value.slice(prefix.length));
+        if (!Number.isNaN(index)) {
+          usedIndexes.add(index);
+        }
+      }
+    }
+  });
 
   let nextIndex = 0;
-  while (usedIndexes.includes(nextIndex)) {
+  while (usedIndexes.has(nextIndex)) {
     nextIndex += 1;
   }
 
-  return `${NEW_PREFIX}${nextIndex}`;
+  return `${prefix}${nextIndex}`;
 };
 

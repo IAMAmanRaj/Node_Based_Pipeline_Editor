@@ -4,7 +4,7 @@ import { NODE_ACCENTS } from "../../constants/theme";
 import {
   OUTPUT_ID_OLD_PREFIX,
   OUTPUT_ID_NEW_PREFIX,
-} from "../../constants/NodeIDs";
+} from "../../constants/NodeConstants";
 
 export const OutputNode = create({
   title: "Output",
@@ -17,7 +17,8 @@ export const OutputNode = create({
       label: "Alias",
       inputType: "text",
       defaultValue: ({ id, data }) =>
-        data?.outputName || id.replace(OUTPUT_ID_OLD_PREFIX, OUTPUT_ID_NEW_PREFIX),
+        data?.outputName ||
+        id.replace(OUTPUT_ID_OLD_PREFIX, OUTPUT_ID_NEW_PREFIX),
       helperText: "Readable label for this pipeline output.",
     },
     {

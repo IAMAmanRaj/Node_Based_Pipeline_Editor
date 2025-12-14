@@ -4,7 +4,7 @@ import { NODE_ACCENTS } from "../../constants/theme";
 import {
   INPUT_ID_OLD_PREFIX,
   INPUT_ID_NEW_PREFIX,
-} from "../../constants/NodeIDs";
+} from "../../constants/NodeConstants";
 
 export const InputNode = create({
   title: "Input",

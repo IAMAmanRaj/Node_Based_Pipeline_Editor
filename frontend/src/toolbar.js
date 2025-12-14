@@ -1,11 +1,15 @@
 // toolbar.js
 
 import { DraggableNode } from "./draggableNode";
-import { NODE_TYPES, NODE_LABELS } from "../../constants/NodeIds";
+import { NODE_TYPES, NODE_LABELS } from "./constants/NodeConstants";
 
 const { INPUT, LLM, OUTPUT, TEXT } = NODE_TYPES;
-const { INPUT: INPUT_LABEL, LLM: LLM_LABEL, OUTPUT: OUTPUT_LABEL, TEXT: TEXT_LABEL } = NODE_LABELS;
-
+const {
+  INPUT: INPUT_LABEL,
+  LLM: LLM_LABEL,
+  OUTPUT: OUTPUT_LABEL,
+  TEXT: TEXT_LABEL,
+} = NODE_LABELS;
 
 export const PipelineToolbar = () => {
   return (

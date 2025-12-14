@@ -7,10 +7,10 @@ import { LLMNode } from "../nodes/definitions/llmNode";
 import { OutputNode } from "../nodes/definitions/outputNode";
 import { TextNode } from "../nodes/definitions/textNode";
 import { DelayNode } from "../nodes/definitions/delayNode";
-import { HttpNode } from '../nodes/definitions/httpNode';
-import { DecisionNode } from '../nodes/definitions/decisionNode';
-import { MathNode } from '../nodes/definitions/mathNode';
-import { CollectorNode } from '../nodes/definitions/collectorNode';
+import { HttpNode } from "../nodes/definitions/httpNode";
+import { DecisionNode } from "../nodes/definitions/decisionNode";
+import { MathNode } from "../nodes/definitions/mathNode";
+import { CollectorNode } from "../nodes/definitions/collectorNode";
 
 import "reactflow/dist/style.css";
 
@@ -22,8 +22,8 @@ const nodeTypes = {
   customOutput: OutputNode,
   text: TextNode,
   delay: DelayNode,
-  httpRequest: HttpNode,
-  branch: DecisionNode,
+  http: HttpNode,
+  decision: DecisionNode,
   math: MathNode,
   collector: CollectorNode,
 };
@@ -97,11 +97,11 @@ export const PipelineUI = () => {
 
   return (
     <div className="h-screen flex flex-col bg-slate-50">
-      <div className="h-14 bg-white border-b border-slate-200 flex items-center justify-between px-6 shadow-sm z-10">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-sm">
+      <div className="h-[75px] bg-white border-b border-slate-200 flex items-center justify-between px-6 shadow-sm z-10">
+        <div className="flex items-center gap-3 w-full pl-12">
+          <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-blue-600 rounded-lg flex items-center justify-center shadow-sm">
             <svg
-              className="w-4 h-4 text-white"
+              className="w-6 h-6 text-white"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -115,10 +115,10 @@ export const PipelineUI = () => {
             </svg>
           </div>
           <div>
-            <h1 className="spaceGroteskBold text-base text-slate-800 leading-none">
+            <h1 className="spaceGroteskBold text-xl text-slate-800 leading-none">
               Pipeline Editor
             </h1>
-            <p className="openSansRegular text-xs text-slate-500 mt-0.5">
+            <p className="openSansRegular text-md text-slate-500 mt-0.5">
               Build your workflow
             </p>
           </div>

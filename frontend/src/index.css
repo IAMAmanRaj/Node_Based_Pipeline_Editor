@@ -1,8 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'Open Sans', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -10,4 +12,50 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+
+.spaceGroteskRegular { /* Using 400 for 'Regular' */
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 400;
+}
+.spaceGroteskMedium { /* Using 500 for 'Medium' */
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 500;
+}
+
+.spaceGroteskBold {
+    font-family: "Space Grotesk", sans-serif;
+    font-weight: 700;
+}
+
+/* --- Roboto Definitions (Weights 100-900 available from import) --- */
+
+
+.robotoRegular {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+}
+.robotoMedium {
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+}
+.robotoBold {
+    font-family: "Roboto", sans-serif;
+    font-weight: 700;
+}
+
+
+.openSansRegular {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 400;
+}
+.openSansMedium {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 500;
+}
+
+.openSansBold {
+    font-family: "Open Sans", sans-serif;
+    font-weight: 700;
 }

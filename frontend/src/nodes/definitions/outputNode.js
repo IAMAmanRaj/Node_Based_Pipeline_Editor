@@ -14,7 +14,7 @@ export const OutputNode = create({
   fields: [
     {
       key: "outputName",
-      label: "Alias",
+      label: "Output",
       inputType: "text",
       defaultValue: ({ id, data }) =>
         data?.outputName ||

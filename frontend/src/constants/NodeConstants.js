@@ -118,17 +118,17 @@ export const defaultHandleStyle = {
 };
 
 export const baseContainerStyle = {
-  width: 260,
+  width: 400,
   minHeight: 140,
   borderRadius: 14,
   border: `1px solid #EFF6FF`,
-  background: 'linear-gradient(135deg, rgba(248,250,252,1) 0%, rgba(255,255,255,1) 100%)',
-  boxShadow: '0 12px 24px rgba(15, 23, 42, 0.08)',
-  padding: '12px 14px',
-  display: 'flex',
-  flexDirection: 'column',
+  background:
+    "linear-gradient(135deg, rgba(248,250,252,1) 0%, rgba(255,255,255,1) 100%)",
+  boxShadow: "0 12px 24px rgba(15, 23, 42, 0.08)",
+  padding: "4px 6px",
+  display: "flex",
+  flexDirection: "column",
   gap: 12,
-  fontFamily:
-    "'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif",
-  color: '#0F172A',
+  fontFamily: "'Open Sans', 'Roboto', sans-serif",
+  color: "#0F172A",
 };

@@ -11,21 +11,19 @@ export const SubmitButton = () => {
   const [isHovered, setIsHovered] = useState(false);
 
   const { nodes, edges } = useStore(selector, shallow);
-  
-    const handleSubmit = async () => {
-    // Prepare the pipeline data for the backend
+
+  const handleSubmit = async () => {
     const pipelineData = {
       nodes: nodes,
       edges: edges,
     };
 
     try {
-      // Using FormData for sending complex JSON to a FastAPI Form(...) endpoint
       const formData = new FormData();
       formData.append("pipeline", JSON.stringify(pipelineData));
 
       const response = await fetch("http://127.0.0.1:8000/pipelines/parse", {
-        method: "POST", // Use POST since we are sending data, and FastAPI's Form expects it
+        method: "POST",
         body: formData,
       });
 
@@ -35,7 +33,6 @@ export const SubmitButton = () => {
 
       const result = await response.json();
 
-      // Create a user-friendly alert
       const dagStatus = result.is_dag
         ? "Yes, it is a DAG."
         : "No, it is NOT a DAG.";

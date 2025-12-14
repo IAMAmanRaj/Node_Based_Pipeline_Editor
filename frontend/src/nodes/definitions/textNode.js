@@ -12,7 +12,7 @@ export const TextNode = create({
     const text = values?.text || '';
     const lines = text.split('\n');
     const longest = Math.max(0, ...lines.map((l) => l.length));
-    const baseWidth = 260;
+    const baseWidth = 360;
     const extraWidth = Math.min(Math.max(0, longest - 40) * 4, 220);
     const width = baseWidth + extraWidth;
     const baseHeight = 140;

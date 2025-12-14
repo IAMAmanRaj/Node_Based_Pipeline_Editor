@@ -1,5 +1,5 @@
 import { useState, useRef, useEffect } from "react";
-import { DraggableNode } from "../draggableNode";
+import { DraggableNode } from "../components/draggableNode";
 import { NODE_TYPES, NODE_LABELS } from "../constants/NodeConstants";
 import {
   HiViewGrid,

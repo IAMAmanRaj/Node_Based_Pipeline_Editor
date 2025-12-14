@@ -1,47 +1,51 @@
-// outputNode.js
+import { Position } from "reactflow";
+import { createNode as create } from "./../BaseNode";
+import { NODE_ACCENTS } from "../../constants/theme";
+import {
+  OUTPUT_ID_OLD_PREFIX,
+  OUTPUT_ID_NEW_PREFIX,
+} from "../../constants/NodeIDs";
 
-import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+export const OutputNode = create({
+  title: "Output",
+  badge: "Sink",
+  description: "Pass data out of your pipeline",
+  accentColor: NODE_ACCENTS.YELLOW,
+  fields: [
+    {
+      key: "outputName",
+      label: "Alias",
+      inputType: "text",
+      defaultValue: ({ id, data }) =>
+        data?.outputName || id.replace(OUTPUT_ID_OLD_PREFIX, OUTPUT_ID_NEW_PREFIX),
+      helperText: "Readable label for this pipeline output.",
+    },
+    {
+      key: "outputType",
+      label: "Format",
+      inputType: "select",
+      defaultValue: ({ data }) => data?.outputType || "Text",
+      options: [
+        { label: "Text", value: "Text" },
+        { label: "Image", value: "Image" },
+        { label: "JSON", value: "JSON" },
+      ],
+    },
+    {
+      key: "isPrimary",
+      label: "Mark as primary",
+      inputType: "checkbox",
+      defaultValue: ({ data }) => Boolean(data?.isPrimary),
+      helperText: "Primary outputs surface first in API responses.",
+    },
+  ],
 
-export const OutputNode = ({ id, data }) => {
-  const [currName, setCurrName] = useState(data?.outputName || id.replace('customOutput-', 'output_'));
-  const [outputType, setOutputType] = useState(data.outputType || 'Text');
-
-  const handleNameChange = (e) => {
-    setCurrName(e.target.value);
-  };
-
-  const handleTypeChange = (e) => {
-    setOutputType(e.target.value);
-  };
-
-  return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <Handle
-        type="target"
-        position={Position.Left}
-        id={`${id}-value`}
-      />
-      <div>
-        <span>Output</span>
-      </div>
-      <div>
-        <label>
-          Name:
-          <input 
-            type="text" 
-            value={currName} 
-            onChange={handleNameChange} 
-          />
-        </label>
-        <label>
-          Type:
-          <select value={outputType} onChange={handleTypeChange}>
-            <option value="Text">Text</option>
-            <option value="File">Image</option>
-          </select>
-        </label>
-      </div>
-    </div>
-  );
-}
+  handles: [
+    {
+      type: "target",
+      position: Position.Left,
+      idSuffix: "value",
+      style: { top: "50%" },
+    },
+  ],
+});

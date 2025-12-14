@@ -1,35 +1,34 @@
-// textNode.js
+import { Position } from "reactflow";
+import { createNode as create } from "./../BaseNode";
+import { NODE_ACCENTS } from "../../constants/theme";
 
-import { useState } from 'react';
-import { Handle, Position } from 'reactflow';
+export const TextNode = create({
+  title: "Text",
+  badge: "Utility",
+  description: "Combine variables into a static or templated string.",
+  accentColor: NODE_ACCENTS.GREEN,
 
-export const TextNode = ({ id, data }) => {
-  const [currText, setCurrText] = useState(data?.text || '{{input}}');
+  fields: [
+    {
+      key: "text",
+      label: "Text",
+      inputType: "textarea",
+      defaultValue: ({ data }) => data?.text || "{{input}}",
+    },
+    {
+      key: "trimWhitespace",
+      label: "Trim whitespace",
+      inputType: "checkbox",
+      defaultValue: ({ data }) => Boolean(data?.trimWhitespace),
+    },
+  ],
 
-  const handleTextChange = (e) => {
-    setCurrText(e.target.value);
-  };
-
-  return (
-    <div style={{width: 200, height: 80, border: '1px solid black'}}>
-      <div>
-        <span>Text</span>
-      </div>
-      <div>
-        <label>
-          Text:
-          <input 
-            type="text" 
-            value={currText} 
-            onChange={handleTextChange} 
-          />
-        </label>
-      </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        id={`${id}-output`}
-      />
-    </div>
-  );
-}
+  handles: [
+    {
+      type: "source",
+      position: Position.Right,
+      idSuffix: "output",
+      label: "Output",
+    },
+  ],
+});

@@ -8,11 +8,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# --- START OF NECESSARY CHANGE ---
-
-# 1. Define the default origins (for local development)
 default_origins = [
-    "https://reactflow-pipeline-editor.vercel.app/",
     "http://localhost:3000",  # Default React development port
     "http://127.0.0.1:3000",
 ]

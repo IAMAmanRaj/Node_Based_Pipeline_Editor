@@ -75,25 +75,43 @@ Implementation Doc : https://docs.google.com/document/d/1aoD7Mc5KhibcaJ1MVdN7_0V
 
 Ensure you have **Node.js** and **Python** installed.
 
-### A. Frontend Setup
+# A. Frontend Setup
 
 Navigate to the `/frontend` directory:
+```
+cd frontend
+```
+
+### 🔑 Frontend .env Configuration
+To connect the frontend to the backend API, create a file named .env in the /frontend directory and add the following line for local development.
+```
+REACT_APP_BACKEND_URL="http://localhost:8000"
+```
 
 ```bash
-cd frontend
 npm install
 npm start
 ```
 
-###  B. Backend Setup
-Navigate to the /backend directory:
+# B. Backend Setup
+
+Navigate to the `/backend` directory:
 ```
 cd ../backend
+```
+### 🔑 Backend .env Configuration
+
+For local development, the backend needs to know which frontend origins are allowed to communicate with it via CORS.
+Create a .env file in the /backend directory.
+Add the variable that specifies the local frontend's URL:
+
+```
+FRONTEND_ORIGIN="http://localhost:3000"
 ```
 
 # Install Python dependencies
 ```
-pip install fastapi uvicorn
+pip install fastapi uvicorn python-dotenv
 ```
 
 # Run the backend server

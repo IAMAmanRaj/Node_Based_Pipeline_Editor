@@ -2,6 +2,13 @@
 
 My submission for VectorShift Frontend Technical Assessment. This project enables users to visually construct data processing pipelines and validate their structure of Nodes and Edges being used in the pipeline for the formation of Directed Acyclic Graph (DAG).
 
+## Deployments
+
+| Entity | Platform | URL Endpoint |
+| :--- | :--- | :--- |
+| **React/Frontend** | **Vercel** | [Frontend](https://reactflow-pipeline-editor.vercel.app)|
+| **FAST API Server** | **Vercel** | [Backend](https://pipeline-editor-server.vercel.app) |
+
 ---
 
 [![React](https://img.shields.io/badge/react-18.2.0-61dafb?style=flat&logo=react)](https://react.dev/)
@@ -22,6 +29,10 @@ My submission for VectorShift Frontend Technical Assessment. This project enable
 | **Backend API** | **Python** | **FastAPI** |
 
 ---
+
+Service,Status,Live URL (Replace Placeholders)
+Frontend UI,Deployed,[INSERT YOUR LIVE FRONTEND URL HERE]
+Backend API,Deployed,[INSERT YOUR LIVE BACKEND URL HERE]
 
 ## Core Features
 

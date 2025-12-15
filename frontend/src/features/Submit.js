@@ -93,17 +93,21 @@ export const SubmitButton = () => {
       );
     } catch (error) {
       console.error("Error submitting pipeline:", error);
-      showToast(
-        <div>
-          <p className="font-medium mb-1">Failed to submit pipeline</p>
-          <p className="text-xs text-slate-500 mb-2">{error.message}</p>
-          <div className="text-xs text-slate-400 space-y-0.5">
-            <p>• Check if backend is running on port 8000</p>
-            <p>• Verify network connection</p>
-          </div>
-        </div>,
-        "error"
-      );
+    showToast(
+        <div>
+          <p className="font-medium mb-1">Failed to submit pipeline</p>
+          
+          <p className="text-xs text-slate-500 mb-2">
+            The API call failed. This may be due to a network issue or server error.
+          </p>
+          <div className="text-xs text-slate-400 space-y-0.5">
+           
+            <p>• Check browser console for details (F12)</p>
+            <p>• Verify the backend service is running</p>
+          </div>
+        </div>,
+        "error"
+      );
     }
   };
 

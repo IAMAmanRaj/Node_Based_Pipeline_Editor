@@ -56,7 +56,10 @@ The complete pipeline structure is submitted to the Python/FastAPI backend, whic
 
 ## 🎥 Project Visuals
 
-### Pipeline Builder UI (Canvas, Toolbar, and Run Button)
+Demo Video : https://drive.google.com/file/d/1_aPSMdW4FjIjJSXT1kgDU43ZJ-RU1nfw/view?usp=sharing
+Implementation Doc : https://docs.google.com/document/d/1aoD7Mc5KhibcaJ1MVdN7_0Vq4nT2AkAw2qsMyurMEyY/edit?usp=sharing
+
+### Pipeline Builder UI (Playground, Toolbar, and Run Pipeline Button)
 
 [![Pipeline UI with Toolbar](https://github.com/user-attachments/assets/e0f90759-63c1-4108-95ee-7d0b3bc2ff95)](https://github.com/user-attachments/assets/e0f90759-63c1-4108-95ee-7d0b3bc2ff95)
 
@@ -98,12 +101,8 @@ pip install fastapi uvicorn
 python -m uvicorn main:app --reload
 ```
 
-Demo Video : https://drive.google.com/file/d/1_aPSMdW4FjIjJSXT1kgDU43ZJ-RU1nfw/view?usp=sharing
-
-Implementation Doc : https://docs.google.com/document/d/1aoD7Mc5KhibcaJ1MVdN7_0Vq4nT2AkAw2qsMyurMEyY/edit?usp=sharing
 ## Related
 
 Check out my other Projects
 
 [Projects Section](https://github.com/IAMAmanRaj?tab=repositories)
-

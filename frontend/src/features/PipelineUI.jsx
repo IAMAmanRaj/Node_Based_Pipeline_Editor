@@ -13,6 +13,7 @@ import { MathNode } from "../nodes/definitions/mathNode.jsx";
 import { CollectorNode } from "../nodes/definitions/collectorNode.jsx";
 
 import "reactflow/dist/style.css";
+import { edgeTypes } from "../components/customEdge.jsx";
 
 const gridSize = 20;
 const proOptions = { hideAttribution: true };
@@ -190,6 +191,7 @@ export const PipelineUI = () => {
           className="rf-edge-hover"
           nodes={nodes}
           edges={edges}
+          edgeTypes={edgeTypes}
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
@@ -201,7 +203,7 @@ export const PipelineUI = () => {
           snapGrid={[gridSize, gridSize]}
           connectionLineType="smoothstep"
           defaultEdgeOptions={{
-            type: "smoothstep",
+            type: "custom-edge",
             animated: true,
             style: { stroke: "#94a3b8", strokeWidth: 2 },
           }}

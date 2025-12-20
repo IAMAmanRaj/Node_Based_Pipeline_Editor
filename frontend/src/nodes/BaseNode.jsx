@@ -1,13 +1,12 @@
 import { memo, useState, useEffect, useCallback, useMemo } from "react";
 import { useStore } from "../store/store";
 import { Handle, Position } from "reactflow";
-import { GoDot } from "react-icons/go";
 import {
   buildInitialState as initialData,
   resolveHandleId,
   renderField,
 } from "./utils/base-node-helpers";
-import { baseContainerStyle, defaultHandleStyle } from "../constants/NodeConstants";
+import { baseContainerStyle } from "../constants/NodeConstants";
 
 const Base = memo(({ nodeConfig, id, data }) => {
   const {
@@ -117,7 +116,7 @@ const Base = memo(({ nodeConfig, id, data }) => {
             top:handle.style?.top,
         }}
           >
-            <div style={{ pointerEvents: 'none' }} className="dot absolute -ml-[2px]"></div>
+            <div style={{ pointerEvents: 'none' }} className="dot absolute -ml-[2px] mt-[2px]"></div>
           </Handle>
         ))}
 
@@ -183,7 +182,7 @@ const Base = memo(({ nodeConfig, id, data }) => {
           >
             <div
               style={{ pointerEvents: 'none' }}
-              className="dot absolute ml-[5.5px]"></div>
+              className="dot absolute ml-[5px] mt-[1px]"></div>
           </Handle>
         ))}
 

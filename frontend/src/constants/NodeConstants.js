@@ -109,13 +109,6 @@ export const textareaStyle = {
   resize: "vertical",
 };
 
-export const defaultHandleStyle = {
-  width: 10,
-  height: 10,
-  backgroundColor: "#5B8DEF",
-  border: `2px solid #0B1220`,
-  boxShadow: "0 0 8px rgba(96,165,250,0.45)",
-};
 
 export const baseContainerStyle = {
   width: 400,

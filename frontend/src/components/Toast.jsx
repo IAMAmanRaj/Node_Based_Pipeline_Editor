@@ -1,4 +1,5 @@
 import { useEffect, useState, useCallback } from "react";
+import { useStore } from "../store/store";
 import { HiX, HiCheckCircle, HiXCircle } from "react-icons/hi";
 
 export const Toast = ({
@@ -7,6 +8,8 @@ export const Toast = ({
   onClose,
   duration = 5000,
 }) => {
+  const theme = useStore((state) => state.theme);
+  const colorMode = theme === 'black' ? 'dark' : 'light';
   const [progress, setProgress] = useState(100);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -49,9 +52,10 @@ export const Toast = ({
       className={`fixed top-6 right-6 z-50 transition-all duration-300 ease-out ${
         isVisible ? "translate-x-0 opacity-100" : "translate-x-full opacity-0"
       }`}
+      data-theme={colorMode}
     >
       <div
-        className={`min-w-[320px] max-w-md bg-white rounded-lg shadow-2xl border-2 overflow-hidden ${
+        className={`min-w-[320px] max-w-md bg-panel rounded-lg shadow-2xl border-2 overflow-hidden ${
           isSuccess ? "border-green-500" : "border-red-500"
         }`}
       >
@@ -70,12 +74,12 @@ export const Toast = ({
           <div className="flex-1 min-w-0">
             <h3
               className={`spaceGroteskBold text-base mb-1 ${
-                isSuccess ? "text-green-700" : "text-red-700"
+                isSuccess ? "text-green-600" : "text-red-600"
               }`}
             >
               {isSuccess ? "Success!" : "Error"}
             </h3>
-            <div className="openSansRegular text-sm text-slate-600 space-y-2">
+            <div className="openSansRegular text-sm text-muted space-y-2">
               {message}
             </div>
           </div>
@@ -83,7 +87,7 @@ export const Toast = ({
           {/* Close Button */}
           <button
             onClick={handleClose}
-            className="flex-shrink-0 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg p-1 transition-colors duration-200"
+            className="flex-shrink-0 text-muted hover:text-text hover:bg-bg rounded-lg p-1 transition-colors duration-200"
             aria-label="Close notification"
           >
             <HiX className="w-5 h-5" />
@@ -91,7 +95,7 @@ export const Toast = ({
         </div>
 
         {/* Progress Bar */}
-        <div className="h-1 bg-slate-100">
+        <div className="h-1 bg-bg">
           <div
             className={`h-full transition-all duration-50 ease-linear ${
               isSuccess ? "bg-green-500" : "bg-red-500"

@@ -11,7 +11,7 @@ import { HttpNode } from "../nodes/definitions/httpNode.jsx";
 import { DecisionNode } from "../nodes/definitions/decisionNode.jsx";
 import { MathNode } from "../nodes/definitions/mathNode.jsx";
 import { CollectorNode } from "../nodes/definitions/collectorNode.jsx";
-import { FiSun, FiMoon, FiMonitor } from "react-icons/fi";
+import { FiSun, FiMoon } from "react-icons/fi";
 
 import "reactflow/dist/style.css";
 import { edgeTypes } from "../components/customEdge.jsx";
@@ -148,9 +148,9 @@ export const PipelineUI = () => {
             </span>
           </div>
 
-          <div className="flex items-center gap-2 px-3 py-1.5 bg-panel rounded-lg border border-border">
+          <div className="flex items-center gap-2 px-3 py-[6px] bg-panel rounded-lg border border-border">
             <svg
-              className="w-3.5 h-3.5 text-muted"
+              className="w-4 h-4 text-muted"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -169,8 +169,9 @@ export const PipelineUI = () => {
 
           <button
             onClick={onToggle}
-            className="flex flex-col items-center gap-1 px-3 py-1 bg-panel rounded-lg border border-border hover:bg-opacity-80 transition-all duration-200 active:scale-95"
+            className="flex flex-col items-center gap-1 px-4 py-2 bg-panel rounded-lg border border-border hover:bg-opacity-80 transition-all duration-200 active:scale-95"
             title={`Switch to ${colorMode === "light" ? "dark" : "light"} mode`}
+            data-theme-toggle
           >
             {colorMode === "light" ? (
               <FiSun size={16} className="text-text"/>

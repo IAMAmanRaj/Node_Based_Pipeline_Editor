@@ -15,6 +15,44 @@ code {
 }
 
 
+/* =========================
+   THEME VARIABLES
+   ========================= */
+
+:root {
+  --bg-app: #f8fafc;
+  --bg-panel: #ffffff;
+  --border-default: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --scrollbar-color : #0284C7;
+
+  /* React Flow */
+  --rf-bg: #f8fafc;
+  --rf-grid: #e5e7eb;
+  --rf-edge: #94a3b8;
+  --rf-controls-bg: #ffffff;
+  --rf-minimap-bg: #ffffff;
+}
+
+/* Dark theme overrides */
+[data-theme='dark'] {
+  --bg-app: #0d0d0d;
+  --bg-panel: #0d0d0d;
+  --border-default: #334155;
+  --text-primary: #e5e7eb;
+  --text-secondary: #94a3b8;
+    --scrollbar-color : #64748b;
+
+  /* React Flow */
+  --rf-bg: #0d0d0d;
+  --rf-grid: #0d0d0d;
+  --rf-edge: #475569;
+  --rf-controls-bg: #0d0d0d;
+  --rf-minimap-bg: #0d0d0d;
+}
+
+
 .spaceGroteskRegular {
     font-family: "Space Grotesk", sans-serif;
     font-weight: 400;
@@ -70,18 +108,18 @@ code {
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #0EA5E9;
+  background-color: var(--scrollbar-color);
   border-radius: 9999px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background-color: #0284C7; /* slightly darker blue */
+background-color: color-mix(in srgb, var(--scrollbar-color) 80%, black);
 }
 
 /* Firefox */
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: #0EA5E9 transparent;
+    scrollbar-color: var(--scrollbar-color) transparent;
 }
 
 @keyframes pulse {
@@ -136,41 +174,6 @@ code {
 
 .animate-slideDown {
   animation: slideDown 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-/* =========================
-   THEME VARIABLES
-   ========================= */
-
-:root {
-  --bg-app: #f8fafc;
-  --bg-panel: #ffffff;
-  --border-default: #e2e8f0;
-  --text-primary: #0f172a;
-  --text-secondary: #64748b;
-
-  /* React Flow */
-  --rf-bg: #f8fafc;
-  --rf-grid: #e5e7eb;
-  --rf-edge: #94a3b8;
-  --rf-controls-bg: #ffffff;
-  --rf-minimap-bg: #ffffff;
-}
-
-/* Dark theme overrides */
-[data-theme='dark'] {
-  --bg-app: #0d0d0d;
-  --bg-panel: #0d0d0d;
-  --border-default: #334155;
-  --text-primary: #e5e7eb;
-  --text-secondary: #94a3b8;
-
-  /* React Flow */
-  --rf-bg: #0d0d0d;
-  --rf-grid: #0d0d0d;
-  --rf-edge: #475569;
-  --rf-controls-bg: #0d0d0d;
-  --rf-minimap-bg: #0d0d0d;
 }
 
 

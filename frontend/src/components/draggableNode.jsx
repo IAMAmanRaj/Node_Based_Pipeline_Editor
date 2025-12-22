@@ -72,9 +72,9 @@ const getNodeIcon = (type) => {
 };
 
 const getNodeColor = (type) => {
-  if (type.includes("Input") || type.includes("input")) return "blue";
-  if (type.includes("Output") || type.includes("output")) return "green";
-  if (type.includes("llm") || type.includes("LLM")) return "purple";
+  // if (type.includes("Input") || type.includes("input")) return "blue";
+  // if (type.includes("Output") || type.includes("output")) return "green";
+  // if (type.includes("llm") || type.includes("LLM")) return "purple";
   return "slate";
 };
 
@@ -111,7 +111,7 @@ export const DraggableNode = ({ type, label }) => {
       hoverIconBg: "group-hover:bg-purple-200",
     },
     slate: {
-      bg: "bg-slate-50",
+      bg: "bg-bg",
       border: "border-slate-200",
       hoverBorder: "group-hover:border-slate-400",
       hoverBg: "group-hover:bg-slate-100",
@@ -158,7 +158,7 @@ export const DraggableNode = ({ type, label }) => {
             {getNodeIcon(type)}
           </div>
         </div>
-        <span className="flex-1 font-medium text-slate-700">{label}</span>
+        <span className="flex-1 font-medium text-text">{label}</span>
         <svg
           className="w-3.5 h-3.5 text-slate-400 group-hover:text-slate-500 transition-colors duration-200 flex-shrink-0"
           fill="none"

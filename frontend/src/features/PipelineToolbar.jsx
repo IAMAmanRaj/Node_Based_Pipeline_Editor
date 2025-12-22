@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect} from "react";
+import { useStore } from "../store/store";
 import { DraggableNode } from "../components/draggableNode.jsx";
 import { NODE_TYPES, NODE_LABELS } from "../constants/NodeConstants";
 import {
@@ -18,6 +19,8 @@ const SEARCH_PLACEHOLDERS = [
 ];
 
 export const PipelineToolbar = () => {
+  const theme = useStore((state) => state.theme);
+  const colorMode = theme === 'black' ? 'dark' : 'light';
   const [searchQuery, setSearchQuery] = useState("");
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [placeholderIndex, setPlaceholderIndex] = useState(0);
@@ -28,10 +31,14 @@ export const PipelineToolbar = () => {
   // useEffect hook for click-outside detection
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Check if click is on theme toggle button or its children
+      const isThemeToggle = event.target.closest('[data-theme-toggle]');
+      
       if (
         !isCollapsed &&
         toolbarRef.current &&
-        !toolbarRef.current.contains(event.target)
+        !toolbarRef.current.contains(event.target) &&
+        !isThemeToggle
       ) {
         setIsCollapsed(true);
       }
@@ -90,16 +97,17 @@ export const PipelineToolbar = () => {
   return (
     <div
       ref={toolbarRef}
-      className="fixed left-0 top-0 h-screen bg-white border-r border-slate-200 shadow-sm z-50 transition-all duration-300 ease-in-out **select-none**"
+      className="fixed left-0 top-0 h-screen bg-panel border-r border-border shadow-sm z-50 transition-all duration-300 ease-in-out **select-none**"
       style={{ width: isCollapsed ? "60px" : "280px" }}
+      data-theme={colorMode}
     >
       <button
         onClick={() => setIsCollapsed(!isCollapsed)}
-        className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-white border border-slate-200 rounded-full shadow-md flex items-center justify-center hover:bg-slate-50 hover:border-slate-300 hover:scale-110 active:scale-95 transition-all duration-200 z-10"
+        className="absolute -right-3 top-1/2 -translate-y-1/2 w-6 h-6 bg-panel border border-border rounded-full shadow-md flex items-center justify-center hover:bg-bg hover:border-border hover:scale-110 active:scale-95 transition-all duration-200 z-10"
         aria-label={isCollapsed ? "Expand toolbar" : "Collapse toolbar"}
       >
         <HiChevronLeft
-          className={`w-3.5 h-3.5 text-slate-600 transition-transform duration-300 ${
+          className={`w-3.5 h-3.5 text-muted transition-transform duration-300 ${
             isCollapsed ? "rotate-180" : ""
           }`}
         />
@@ -107,30 +115,30 @@ export const PipelineToolbar = () => {
 
       {!isCollapsed && (
         <div className="h-full flex flex-col">
-          <div className="px-5 py-4 border-b border-slate-200 opacity-0 animate-[fadeIn_0.3s_ease-out_0.1s_forwards]">
+          <div className="px-5 py-4 border-b border-border opacity-0 animate-[fadeIn_0.3s_ease-out_0.1s_forwards]">
             <div className="flex flex-col items-center justify-center text-center gap-3">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl flex items-center justify-center shadow-md transition-all duration-300 hover:scale-110 hover:shadow-lg hover:-translate-y-0.5">
                 <HiViewGrid className="w-6 h-6 text-white" />
               </div>
               <div>
-                <h2 className="spaceGroteskBold text-lg text-slate-800 mb-1">
+                <h2 className="spaceGroteskBold text-lg text-text mb-1">
                   Node Library
                 </h2>
-                <p className="openSansRegular text-xs text-slate-500">
+                <p className="openSansRegular text-xs text-muted">
                   Drag components to canvas
                 </p>
               </div>
             </div>
           </div>
 
-          <div className="px-4 pt-4 pb-3 border-b border-slate-100 opacity-0 animate-[fadeIn_0.6s_ease-out_0.35s_forwards]">
+          <div className="px-4 pt-4 pb-3 border-b border-border opacity-0 animate-[fadeIn_0.6s_ease-out_0.35s_forwards]">
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                 <HiSearch
                   className={`w-4 h-4 transition-all duration-300 ${
                     isSearchFocused
                       ? "text-blue-500 scale-110"
-                      : "text-slate-400"
+                      : "text-muted"
                   }`}
                 />
               </div>
@@ -138,7 +146,7 @@ export const PipelineToolbar = () => {
               {!searchQuery && !isSearchFocused && (
                 <span
                   key={placeholderIndex}
-                  className="absolute left-9 top-1/2 -translate-y-1/2 openSansRegular text-sm text-slate-400 pointer-events-none animate-[fadeIn_0.6s_ease-in-out]"
+                  className="absolute left-9 top-1/2 -translate-y-1/2 openSansRegular text-sm text-muted pointer-events-none animate-[fadeIn_0.6s_ease-in-out]"
                 >
                   {SEARCH_PLACEHOLDERS[placeholderIndex]}
                 </span>
@@ -151,15 +159,15 @@ export const PipelineToolbar = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setIsSearchFocused(true)}
                 onBlur={() => setIsSearchFocused(false)}
-                className={`w-full pl-9 pr-9 py-2 openSansRegular text-sm border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent focus:shadow-md focus:scale-[1.02] transition-all duration-300 ${
-                  isSearchFocused ? "bg-white" : "bg-slate-50"
+                className={`w-full pl-9 pr-9 py-2 openSansRegular text-sm text-text border border-border rounded-lg focus:outline-none focus:ring-2 ${colorMode === "dark" ? "focus:ring-muted" : "focus:ring-blue-500"} focus:border-transparent focus:shadow-md focus:scale-[1.02] transition-all duration-300 ${
+                  isSearchFocused ? "bg-panel" : "bg-bg"
                 }`}
                 placeholder=" "
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery("")}
-                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-slate-400 hover:text-slate-600 hover:scale-110 active:scale-95 transition-all duration-200"
+                  className="absolute inset-y-0 right-0 pr-3 flex items-center text-muted hover:text-text hover:scale-110 active:scale-95 transition-all duration-200"
                 >
                   <HiX className="w-4 h-4" />
                 </button>
@@ -170,13 +178,13 @@ export const PipelineToolbar = () => {
           <div className="flex-1 overflow-y-auto custom-scrollbar px-4 py-4 opacity-0 animate-[fadeIn_0.3s_ease-out_0.2s_forwards]">
             {Object.entries(groupedNodes).length === 0 ? (
               <div className="flex flex-col items-center justify-center py-16 text-center">
-                <div className="w-14 h-14 bg-slate-100 rounded-full flex items-center justify-center mb-3">
-                  <BiSearchAlt className="w-7 h-7 text-slate-400" />
+                <div className="w-14 h-14 bg-bg rounded-full flex items-center justify-center mb-3">
+                  <BiSearchAlt className="w-7 h-7 text-muted" />
                 </div>
-                <p className="openSansMedium text-sm text-slate-600 mb-1">
+                <p className="openSansMedium text-sm text-text mb-1">
                   No nodes found
                 </p>
-                <p className="openSansRegular text-xs text-slate-400">
+                <p className="openSansRegular text-xs text-muted">
                   Try a different search
                 </p>
               </div>
@@ -189,7 +197,7 @@ export const PipelineToolbar = () => {
                       className="opacity-0 animate-[fadeInUp_0.4s_ease-out_forwards]"
                       style={{ animationDelay: `${50 + categoryIndex * 60}ms` }}
                     >
-                      <h3 className="spaceGroteskMedium text-xs uppercase tracking-wide text-slate-500 mb-2.5 px-1">
+                      <h3 className="spaceGroteskMedium text-xs uppercase tracking-wide text-muted mb-2.5 px-1">
                         {category}
                       </h3>
                       <div className="space-y-2">
@@ -223,10 +231,10 @@ export const PipelineToolbar = () => {
         <div className="h-full flex flex-col items-center pt-4 gap-4">
           <button
             onClick={() => setIsCollapsed(false)}
-            className="w-10 h-10 rounded-lg bg-slate-100 hover:bg-slate-200 hover:scale-110 active:scale-95 flex items-center justify-center transition-all duration-200"
+            className="w-10 h-10 rounded-lg bg-bg hover:bg-panel hover:scale-110 active:scale-95 flex items-center justify-center transition-all duration-200"
             aria-label="Expand toolbar"
           >
-            <HiMenu className="w-5 h-5 text-slate-600" />
+            <HiMenu className="w-5 h-5 text-muted" />
           </button>
         </div>
       )}

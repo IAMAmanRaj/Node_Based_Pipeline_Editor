@@ -159,18 +159,18 @@ code {
 
 /* Dark theme overrides */
 [data-theme='dark'] {
-  --bg-app: #020617;
-  --bg-panel: #020617;
+  --bg-app: #0d0d0d;
+  --bg-panel: #0d0d0d;
   --border-default: #334155;
   --text-primary: #e5e7eb;
   --text-secondary: #94a3b8;
 
   /* React Flow */
-  --rf-bg: #020617;
-  --rf-grid: #020617;
+  --rf-bg: #0d0d0d;
+  --rf-grid: #0d0d0d;
   --rf-edge: #475569;
-  --rf-controls-bg: #020617;
-  --rf-minimap-bg: #020617;
+  --rf-controls-bg: #0d0d0d;
+  --rf-minimap-bg: #0d0d0d;
 }
 
 

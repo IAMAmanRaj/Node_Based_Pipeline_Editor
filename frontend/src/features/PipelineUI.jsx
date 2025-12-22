@@ -11,6 +11,7 @@ import { HttpNode } from "../nodes/definitions/httpNode.jsx";
 import { DecisionNode } from "../nodes/definitions/decisionNode.jsx";
 import { MathNode } from "../nodes/definitions/mathNode.jsx";
 import { CollectorNode } from "../nodes/definitions/collectorNode.jsx";
+import { FiSun, FiMoon, FiMonitor } from "react-icons/fi";
 
 import "reactflow/dist/style.css";
 import { edgeTypes } from "../components/customEdge.jsx";
@@ -37,12 +38,13 @@ const selector = (state) => ({
   onNodesChange: state.onNodesChange,
   onEdgesChange: state.onEdgesChange,
   onConnect: state.onConnect,
+  theme: state.theme,
+  setTheme: state.setTheme,
 });
 
 export const PipelineUI = () => {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
-  const [colorMode, setColorMode] = useState("light");
   const {
     nodes,
     edges,
@@ -51,7 +53,15 @@ export const PipelineUI = () => {
     onNodesChange,
     onEdgesChange,
     onConnect,
+    theme,
+    setTheme,
   } = useStore(selector, shallow);
+
+  const colorMode = theme === 'black' ? 'dark' : 'light';
+
+  const onToggle = () => {
+    setTheme(theme === 'black' ? 'white' : 'black');
+  };
 
   const getInitNodeData = (nodeID, type) => {
     let nodeData = { id: nodeID, nodeType: `${type}` };
@@ -158,38 +168,14 @@ export const PipelineUI = () => {
           </div>
 
           <button
-            onClick={() => setColorMode(colorMode === "light" ? "dark" : "light")}
-            className="flex items-center gap-2 px-3 py-1.5 bg-panel rounded-lg border border-border hover:bg-opacity-80 transition-all duration-200 active:scale-95"
+            onClick={onToggle}
+            className="flex flex-col items-center gap-1 px-3 py-1 bg-panel rounded-lg border border-border hover:bg-opacity-80 transition-all duration-200 active:scale-95"
             title={`Switch to ${colorMode === "light" ? "dark" : "light"} mode`}
           >
             {colorMode === "light" ? (
-              <svg
-                className="w-3.5 h-3.5 text-text"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"
-                />
-              </svg>
+              <FiSun size={16} className="text-text"/>
             ) : (
-              <svg
-                className="w-3.5 h-3.5 text-text"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
+             <FiMoon size={16} className="text-text" />
             )}
             <span className="openSansRegular text-xs text-text">
               {colorMode === "light" ? "Dark" : "Light"}
@@ -261,11 +247,9 @@ export const PipelineUI = () => {
           />
           <MiniMap
             className="!rounded-lg !shadow-md !right-4 !bottom-20 react-flow__minimap"
-            maskColor={colorMode === "dark" ? "rgba(2, 6, 23, 0.85)" : "#94a3b8"}
+            maskColor={colorMode === "dark" ? "#292323" : "#E8E8E8"}
             nodeColor={(node) => {
-              if (node.type === "customInput") return "#0EA5E9";
-              if (node.type === "customOutput") return "#10B981";
-              if (node.type === "llm") return "#8B5CF6";
+             
               return "#94a3b8";
             }}
             nodeStrokeWidth={3}

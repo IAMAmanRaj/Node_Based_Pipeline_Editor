@@ -3,11 +3,15 @@ import { BaseEdge,
   getBezierPath,
   useReactFlow,} from 'reactflow';
 import { useState } from 'react';
+import { useStore } from '../store/store';
  
 function CustomEdge({ id, sourceX, sourceY, targetX, targetY, ...props }) {
     const { deleteElements } = useReactFlow();
+    const theme = useStore((state) => state.theme);
     const [showConfirm, setShowConfirm] = useState(false);
     const [isHovered, setIsHovered] = useState(false);
+    
+    const isDark = theme === 'black';
     
   const [edgePath, labelX, labelY] = getBezierPath({
     sourceX,
@@ -34,6 +38,7 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, ...props }) {
     />
       <EdgeLabelRenderer>
         <div 
+          
           className="nodrag nopan" 
           style={{
             position: 'absolute',
@@ -65,15 +70,23 @@ function CustomEdge({ id, sourceX, sourceY, targetX, targetY, ...props }) {
               </svg>
             </button>
           ) : (
-            <div className="bg-[#121212]/98 border border-red-500/30 rounded-lg shadow-[0_10px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(239,68,68,0.15)] backdrop-blur-xl animate-slideDown flex gap-2 p-1.5">
+            <div className={`${
+              isDark 
+                ? 'bg-[#121212]/98 border-red-500/30 shadow-[0_10px_40px_rgba(0,0,0,0.5),0_0_20px_rgba(239,68,68,0.15)]' 
+                : 'bg-white/98 border-red-500/40 shadow-[0_10px_40px_rgba(0,0,0,0.2),0_0_20px_rgba(239,68,68,0.25)]'
+            } border rounded-lg backdrop-blur-xl animate-slideDown flex gap-2 p-1.5`}>
               <button 
-                className="px-3 py-1.5 rounded bg-white/8 border border-white/10 text-black text-xs openSansMedium transition-all duration-200 hover:bg-white/12 hover:border-white/20 active:scale-95"
+                className={`px-3 py-1.5 rounded transition-all duration-300 ${
+                  isDark
+                    ? 'bg-[#0d0d0d] border-white/10 text-white hover:bg-white/12 hover:border-white/20'
+                    : 'bg-gray-100 border-gray-300 text-gray-800 hover:bg-gray-200 hover:border-gray-400'
+                } border text-xs openSansMedium transition-all duration-200 active:scale-95`}
                 onClick={() => setShowConfirm(false)}
               >
                 No
               </button>
               <button 
-                className="px-3 py-1.5 rounded bg-gradient-to-br from-red-500 to-red-600 border border-red-500/50 text-white text-xs openSansMedium shadow-[0_2px_8px_rgba(239,68,68,0.3)] transition-all duration-200 hover:from-red-600 hover:to-red-700 hover:shadow-[0_4px_12px_rgba(239,68,68,0.4)] hover:-translate-y-0.5 active:translate-y-0 active:scale-98"
+                className={`px-3 py-1.5 rounded ${isDark ? 'bg-gradient-to-br from-pink-800 to-pink-900 border border-red-500/50 hover:from-pink-600 hover:to-pink-700' : ' bg-gradient-to-br from-red-500 to-red-600 border border-red-500/50 hover:from-red-600 hover:to-red-700'} text-white text-xs openSansMedium shadow-[0_2px_8px_rgba(239,68,68,0.3)] transition-all duration-300  hover:shadow-[0_4px_12px_rgba(239,68,68,0.4)] hover:-translate-y-0.5 active:translate-y-0 active:scale-98`}
                 onClick={handleDelete}
               >
                 Yes

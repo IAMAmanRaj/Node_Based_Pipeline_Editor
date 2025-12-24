@@ -45,6 +45,8 @@ const selector = (state) => ({
 export const PipelineUI = () => {
   const reactFlowWrapper = useRef(null);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+  const [isInteractive, setIsInteractive] = useState(true);
+
   const {
     nodes,
     edges,
@@ -236,6 +238,9 @@ export const PipelineUI = () => {
             minZoom: 0.6,
             maxZoom: 0.8,
           }}
+          zoomOnScroll={isInteractive}
+  panOnScroll={isInteractive}
+  panOnDrag={isInteractive}
         >
           <Background
             color={colorMode === "dark" ? "#334155" : "#cbd5e1"}
@@ -243,16 +248,21 @@ export const PipelineUI = () => {
             size={1}
           />
           <Controls
-            className="!rounded-lg !shadow-md !left-4 !bottom-4"
-            showInteractive={false}
+            className="flex flex-row"
+            showInteractive={true}
+            position="bottom-center"
+            onInteractiveChange={setIsInteractive}
+            style={
+              {
+                border: colorMode === "dark" ? "1px solid #44403c" : "1px solid #e2e8f0",
+                boxShadow: colorMode === "dark" ? "0 24px 12px rgba(0, 0, 0, 0.1)" : "0 24px 12px rgba(0, 0, 0, 0.1)",
+ }
+            }
+            aria-label="React Flow Controls"
           />
           <MiniMap
             className="!rounded-lg !shadow-md !right-4 !bottom-20 react-flow__minimap"
             maskColor={colorMode === "dark" ? "#292323" : "#E8E8E8"}
-            nodeColor={(node) => {
-             
-              return "#94a3b8";
-            }}
             nodeStrokeWidth={3}
             zoomable
             pannable

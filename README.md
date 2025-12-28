@@ -79,51 +79,77 @@ Implementation Doc : https://docs.google.com/document/d/1aoD7Mc5KhibcaJ1MVdN7_0V
 
 ## ⚙️ Setup & Installation
 
+### Docker Workflow
+The project is set up with **Docker** and **Docker Compose**. This ensures environment parity and makes it easy for anyone to get the project running with a single command.
+
+**If you do not have Docker installed, you can run the project locally using Node.js and Python.**
+
+---
+
+## 🐳 Docker Development
+
+**Prerequisites:** Docker Desktop installed and running.
+
+**Quick Start:**  
+```bash
+docker compose up --build
+```
+
+This will start both the frontend and backend services on their configured ports (default: frontend on port 3000, backend on port 8000).
+
+---
+
+## ⚙️ Local Setup (without Docker)
+
 Ensure you have **Node.js** and **Python** installed.
 
-# A. Frontend Setup
+### A. Frontend Setup
 
 Navigate to the `/frontend` directory:
-```
+```bash
 cd frontend
 ```
 
-### 🔑 Frontend .env Configuration
-To connect the frontend to the backend API, create a file named .env in the /frontend directory and add the following line for local development.
+#### 🔑 Frontend .env Configuration
+To connect the frontend to the backend API, create a file named `.env` in the `/frontend` directory and add the following line for local development:
 ```
 REACT_APP_BACKEND_URL="http://localhost:8000"
 ```
 
+Install dependencies and start the development server:
 ```bash
 npm install
 npm start
 ```
 
-# B. Backend Setup
+### B. Backend Setup
 
 Navigate to the `/backend` directory:
+```bash
+cd backend
 ```
-cd ../backend
-```
-### 🔑 Backend .env Configuration
+
+#### 🔑 Backend .env Configuration
 
 For local development, the backend needs to know which frontend origins are allowed to communicate with it via CORS.
-Create a .env file in the /backend directory.
+Create a `.env` file in the `/backend` directory.
 Add the variable that specifies the local frontend's URL:
 
 ```
 FRONTEND_ORIGIN="http://localhost:3000"
 ```
 
-# Install Python dependencies
-```
+Install Python dependencies:
+```bash
 pip install fastapi uvicorn python-dotenv
 ```
 
-# Run the backend server
-```
+Run the backend server:
+```bash
 python -m uvicorn main:app --reload
 ```
+
+---
 
 ## Related
 
